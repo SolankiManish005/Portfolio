@@ -31,7 +31,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="text-center p-10 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-        <h2 className="text-4xl font-bold mb-4">Hi, I'm Manish 👋</h2>
+        <h2 className="text-4xl font-bold mb-4">Hi, I&rsquo;m Manish 👋</h2>
         <p className="text-lg mb-4">A MERN Stack Developer</p>
         <p className="text-lg mb-6">
           I specialize in building modern web interfaces using MongoDB, Express,
