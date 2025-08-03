@@ -2,33 +2,24 @@ import clientPromise from "@/lib/mongodb";
 
 export async function POST(request) {
   try {
-    const { name, email, message } = await request.json();
-
-    if (!name || !email || !message) {
-      return Response.json({
-        success: false,
-        message: "All fields are required",
-      }, { status: 400 });
-    }
-
+    const body = await request.json();
     const client = await clientPromise;
-    const db = client.db("portfolioDB"); // ✅ your custom DB name
-    const collection = db.collection("contacts"); // ✅ auto-created
+    const db = client.db("portfolioDB");
+    const collection = db.collection("contacts");
 
-    const result = await collection.insertOne({
-      name,
-      email,
-      message,
-      createdAt: new Date()
-    });
+    const result = await collection.insertOne(body);
 
     return Response.json({
       success: true,
-      message: "Message saved successfully",
+      message: "Contact saved",
       result,
     });
   } catch (error) {
-    console.error("❌ API contact error:", error);
-    return Response.json({ success: false, message: "Server error" }, { status: 500 });
+    console.error("API error:", error);
+    return Response.json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    }, { status: 500 });
   }
 }
