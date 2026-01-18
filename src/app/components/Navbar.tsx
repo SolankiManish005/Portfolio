@@ -46,13 +46,16 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-2 transition-all ${
+                  className={`flex items-center gap-2 transition-all group ${
                     isActive
                       ? "text-indigo-500 font-semibold"
                       : "text-gray-700 dark:text-gray-300 hover:text-indigo-500"
                   }`}
                 >
-                  <Icon size={18} />
+                  <Icon
+                    size={18}
+                    className="group-hover:scale-110 transition"
+                  />
                   {link.name}
                 </Link>
               );

@@ -18,7 +18,7 @@ export default function ContactForm() {
   const [status, setStatus] = useState<string>("");
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -94,9 +94,7 @@ export default function ContactForm() {
         </button>
       </div>
 
-      <p className="text-center mt-4 text-sm text-muted-foreground">
-        {status}
-      </p>
+      <p className="text-center mt-4 text-sm text-muted-foreground">{status}</p>
     </form>
   );
 }

@@ -20,15 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-          <div className="flex min-h-screen flex-col">
-            {/* Navbar */}
-            <Navbar />
+    <div className="flex min-h-screen flex-col">
+      {/* Navbar */}
+      <Navbar />
 
-            {/* Page Content */}
-            <main className="flex-1 pb-16">{children}</main>
+      {/* Page Content */}
+      <main className="flex-1 pb-16">{children}</main>
 
-            {/* Footer */}
-            <Footer />
-          </div>
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 }

@@ -11,12 +11,7 @@ export const projects: Project[] = [
     title: "MedTrack – Healthcare CRM & Delivery System",
     description:
       "A full-stack platform integrating CRM, pharmacy management, and logistics for hospitals and patients with real-time delivery and payment flow.",
-    tech: [
-      "MongoDB",
-      "Express.js",
-      "React.js",
-      "Node.js",
-    ],
+    tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
     role: "Full-Stack Developer",
     link: "#",
   },
@@ -24,13 +19,7 @@ export const projects: Project[] = [
     title: "OCR Document Search System",
     description:
       "A document management system that performs OCR on PDF and image files, stores extracted metadata in MongoDB, and indexes full text content in Apache Solr. The platform enables fast full-text search and directly displays the exact document (PDF or image) where the searched content exists.",
-    tech: [
-      "MongoDB",
-      "Express.js",
-      "EJS",
-      "Node.js",
-      "Apache Solr",
-    ],
+    tech: ["MongoDB", "Express.js", "EJS", "Node.js", "Apache Solr"],
     role: "Full-Stack Developer",
     link: "#",
   },
@@ -81,7 +70,7 @@ export const projects: Project[] = [
   {
     title: "Rock-Paper-Scissor",
     description: "Classic Rock Paper Scissors game.",
-    tech: ["HTML","CSS", "JavaScript"],
+    tech: ["HTML", "CSS", "JavaScript"],
     role: "Frontend Developer",
     link: "https://github.com/solankimanish005/Rock-Paper-Scissor-Game",
   },
