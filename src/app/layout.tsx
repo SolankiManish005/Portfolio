@@ -1,16 +1,43 @@
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { Playfair_Display, Inter } from "next/font/google";
+import type { Metadata } from "next";
+import { Nunito } from "next/font/google";
 
-const playfair = Playfair_Display({
+const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-serif",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-nunito",
+  display: "swap",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+export const metadata: Metadata = {
+  title: "Contact Me | Manish Solanki – MERN Developer",
+  description:
+    "Contact Manish Solanki, MERN Stack Developer from India, for freelance work, projects, and collaborations.",
+  keywords: [
+    "Manish Solanki",
+    "MERN Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Freelance Web Developer India",
+    "Contact MERN Developer",
+  ],
+  openGraph: {
+    title: "Contact Me | Manish Solanki",
+    description: "Get in touch for MERN stack projects and collaborations.",
+    url: "https://solankimanish.dev/contact",
+    siteName: "Manish Solanki Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Manish Solanki Portfolio",
+      },
+    ],
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -20,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable}`}
+      className={`${nunito.variable} antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-white dark:bg-black">

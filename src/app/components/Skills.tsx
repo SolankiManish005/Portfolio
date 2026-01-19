@@ -14,6 +14,7 @@ import {
   Layers,
 } from "lucide-react";
 import { skillGroups } from "@/data/skills";
+import Link from "next/link";
 
 const skills = [
   { title: "Team Leadership & Mentorship", icon: Users },
@@ -67,28 +68,27 @@ export default function Skills() {
                       {skill.name}
                     </p>
 
-                    <a
+                    <Link
                       href={skill.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative text-gray-500 hover:text-primary transition"
+                      className="relative group text-gray-500 hover:text-primary transition"
+                      aria-label="Learn more"
                     >
                       <ExternalLink size={15} />
-
-                      {/* Tooltip */}
                       <span
                         className="
-                  absolute -top-9 left-1/2 -translate-x-1/2
-                  scale-0 group-hover:scale-100
-                  transition
-                  rounded bg-black dark:bg-white
-                  text-white dark:text-black
-                  text-xs px-2 py-1 shadow whitespace-nowrap
-                "
+      absolute -top-9 left-1/2 -translate-x-1/2
+      scale-0 group-hover:scale-100
+      transition
+      rounded bg-black dark:bg-white
+      text-white dark:text-black
+      text-xs px-2 py-1 shadow whitespace-nowrap
+    "
                       >
                         Learn more
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 ))}
               </div>

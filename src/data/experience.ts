@@ -25,6 +25,6 @@ export const experience: ExperienceItem[] = [
     company: "Divine ERP Solutions Pvt. Ltd.",
     duration: "October 2024 - April 2025",
     description:
-      "Worked on backend modules using Node.js and Express.js with emphasis on secure APIs and maintainable architecture.",
+      "Completed hands-on training in React.js, Next.js, and the MERN stack, focusing on building responsive user interfaces with Tailwind CSS and developing secure REST APIs using Node.js, Express.js, and JWT-based authentication.",
   },
 ];

@@ -42,7 +42,6 @@ export const skillGroups: SkillGroup[] = [
         href: "https://expressjs.com/",
       },
       { name: "GraphQL", icon: "/graphql.svg", href: "https://graphql.org/" },
-      { name: "Docker", icon: "/docker.svg", href: "https://www.docker.com/" },
     ],
   },
   {
@@ -63,13 +62,15 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Backend & DevOps",
     skills: [
+      { name: "Linux", icon: "/linux.svg", href: "https://www.linux.org/" },
+      { name: "Docker", icon: "/docker.svg", href: "https://www.docker.com/" },
       {
         name: "Mongoose",
         icon: "/mongoose.svg",
         href: "https://mongoosejs.com/",
       },
       { name: "Git", icon: "/git.svg", href: "https://git-scm.com/" },
-      { name: "Linux", icon: "/linux.svg", href: "https://www.linux.org/" },
+      { name: "Vercel", icon: "/favicon.ico", href: "https://vercel.com/" },
     ],
   },
 ];

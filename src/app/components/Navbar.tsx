@@ -23,7 +23,6 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-black/10 border-b border-gray-200/20 dark:border-gray-800/40">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex h-16 items-center">
-          {/* Logo */}
           <div className="flex items-center gap-2 w-1/4">
             <Link href="/" aria-label="Go to Home">
               <Image
@@ -36,7 +35,6 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Center Menu */}
           <div className="hidden md:flex flex-1 justify-center items-center gap-10">
             {links.map((link) => {
               const Icon = link.icon;
@@ -62,12 +60,10 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Theme Toggle */}
           <div className="hidden md:flex w-1/4 justify-end">
             <ThemeToggle />
           </div>
 
-          {/* Mobile Button */}
           <div className="md:hidden ml-auto">
             <button
               onClick={() => setOpen(!open)}
@@ -79,7 +75,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {open && (
         <div className="md:hidden bg-white/95 dark:bg-black/10 backdrop-blur-xl px-6 py-6 space-y-6">
           {links.map((link) => {

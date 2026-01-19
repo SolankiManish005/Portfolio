@@ -1,6 +1,7 @@
 "use client";
 
 import { Mail, MapPin, Send, Download } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Contact() {
@@ -39,7 +40,6 @@ export default function Contact() {
       const data = await res.json();
 
       if (!res.ok) {
-        // Zod validation errors
         if (data.errors) {
           const firstError = Object.values(data.errors)[0] as string[];
           throw new Error(firstError[0]);
@@ -63,7 +63,6 @@ export default function Contact() {
   return (
     <section className="px-6 py-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
-        {/* Left Content */}
         <div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Contact Me</h2>
 
@@ -84,13 +83,14 @@ export default function Contact() {
             </div>
           </div>
 
-          <button className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-gray-700 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition">
-            <Download className="w-4 h-4" />
-            Resume
-          </button>
+          <Link href="/resume.pdf" download passHref>
+            <button className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-gray-700 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition cursor-pointer">
+              <Download className="w-4 h-4" />
+              Resume
+            </button>
+          </Link>
         </div>
 
-        {/* Right Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <Input
             label="Name"
@@ -132,7 +132,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-md border border-gray-700 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-md border border-gray-700 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition disabled:opacity-50 cursor-pointer"
           >
             <Send className="w-4 h-4" />
             {loading ? "Sending..." : "Send Message"}

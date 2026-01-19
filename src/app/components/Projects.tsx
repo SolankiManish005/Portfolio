@@ -12,7 +12,6 @@ export default function Projects() {
   return (
     <section className="py-10 bg-gray-50 dark:bg-black transition-colors">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">
           Projects
         </h2>
@@ -20,7 +19,6 @@ export default function Projects() {
           Featured Projects
         </p>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 cursor-pointer">
           {visibleProjects.map((project, index) => (
             <div
@@ -36,7 +34,6 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-5">
                   {project.tech.map((tech, i) => (
                     <span
@@ -48,7 +45,6 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Role */}
                 <div className="text-sm px-4 py-2 rounded-lg bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-gray-300 mb-5">
                   <span className="font-medium text-blue-600 dark:text-blue-400">
                     Role:
@@ -59,6 +55,7 @@ export default function Projects() {
 
               <Link
                 href={project.link || "#"}
+                target="_blank"
                 className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium hover:underline"
               >
                 View Project
