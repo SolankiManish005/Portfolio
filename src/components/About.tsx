@@ -5,7 +5,7 @@ import Skills from "./Skills";
 const About = () => {
   return (
     <section className="bg-gray-50 dark:bg-black/10">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <section className="py-10">
           <h1 className="font-bold mb-6 md:text-5xl text-4xl">About Me</h1>
           <p className="text-gray-700 dark:text-gray-300 text-lg font-medium">

@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import clientPromise from "@/lib/mongodb";
 import { authOptions } from "@/lib/auth";
-import MessagesTable, { Message } from "../../../components/MessagesTable";
+import MessagesTable, { Message } from "@/components/MessagesTable";
 
 export default async function AdminMessagesPage() {
   const session = await getServerSession(authOptions);

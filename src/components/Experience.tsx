@@ -4,7 +4,7 @@ import { experience } from "@/data/experience";
 
 export default function Experience() {
   return (
-    <section className="pt-16 pb-30">
+    <section className="pt-5 pb-15">
       <h2 className="mb-10 text-3xl font-bold">Experience</h2>
 
       <div className="space-y-10">
