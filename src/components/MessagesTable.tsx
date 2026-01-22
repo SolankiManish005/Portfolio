@@ -1,7 +1,5 @@
 "use client";
-
 import { signOut } from "next-auth/react";
-
 export interface Message {
   _id: string;
   name: string;
@@ -25,47 +23,67 @@ export default function MessagesTable({ messages }: { messages: Message[] }) {
   return (
     <>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Messages</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          Messages
+        </h1>
 
         <button
           onClick={() => signOut({ callbackUrl: "/admin/login" })}
-          className="border px-4 py-2 rounded hover:bg-red-600 hover:text-white transition"
+          className="border border-gray-300 dark:border-neutral-700 px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-red-600 hover:text-white transition"
         >
           Logout
         </button>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full border border-gray-700 rounded-lg">
-          <thead className="bg-gray-900">
+      <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-neutral-700">
+        <table className="w-full border-collapse">
+          <thead className="bg-gray-100 dark:bg-neutral-800">
             <tr>
-              <th className="border px-4 py-2 text-left">Name</th>
-              <th className="border px-4 py-2 text-left">Email</th>
-              <th className="border px-4 py-2 text-left">Subject</th>
-              <th className="border px-4 py-2 text-left">Message</th>
-              <th className="border px-4 py-2 text-left">Date</th>
-              <th className="border px-4 py-2 text-center">Action</th>
+              {["Name", "Email", "Subject", "Message", "Date", "Action"].map(
+                (head) => (
+                  <th
+                    key={head}
+                    className="px-4 py-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-neutral-700"
+                  >
+                    {head}
+                  </th>
+                ),
+              )}
             </tr>
           </thead>
 
-          <tbody>
+          <tbody className="bg-white dark:bg-neutral-900">
             {messages.map((msg) => (
-              <tr key={msg._id} className="hover:bg-gray-800">
-                <td className="border px-4 py-2">{msg.name}</td>
-                <td className="border px-4 py-2">{msg.email}</td>
-                <td className="border px-4 py-2">{msg.subject}</td>
-                <td className="border px-4 py-2 max-w-md truncate">
+              <tr
+                key={msg._id}
+                className="hover:bg-gray-50 dark:hover:bg-neutral-800 transition"
+              >
+                <td className="px-4 py-3 border-b border-gray-200 dark:border-neutral-800 text-gray-800 dark:text-gray-100">
+                  {msg.name}
+                </td>
+
+                <td className="px-4 py-3 border-b border-gray-200 dark:border-neutral-800 text-gray-600 dark:text-gray-300">
+                  {msg.email}
+                </td>
+
+                <td className="px-4 py-3 border-b border-gray-200 dark:border-neutral-800 text-gray-700 dark:text-gray-200">
+                  {msg.subject}
+                </td>
+
+                <td className="px-4 py-3 border-b border-gray-200 dark:border-neutral-800 text-gray-600 dark:text-gray-300 max-w-md truncate">
                   {msg.message}
                 </td>
-                <td className="border px-4 py-2 text-sm">
+
+                <td className="px-4 py-3 border-b border-gray-200 dark:border-neutral-800 text-sm text-gray-500 dark:text-gray-400">
                   {msg.createdAt
                     ? new Date(msg.createdAt).toLocaleString()
                     : "N/A"}
                 </td>
-                <td className="border px-4 py-2 text-center">
+
+                <td className="px-4 py-3 border-b border-gray-200 dark:border-neutral-800 text-center">
                   <button
                     onClick={() => handleDelete(msg._id)}
-                    className="text-red-500 hover:underline"
+                    className="text-red-600 dark:text-red-400 hover:underline"
                   >
                     Delete
                   </button>

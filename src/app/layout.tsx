@@ -12,6 +12,7 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: "Contact Me | Manish Solanki – MERN Developer",
+  metadataBase: new URL("https://solankimanish.dev/"),
   description:
     "Contact Manish Solanki, MERN Stack Developer from India, for freelance work, projects, and collaborations.",
   keywords: [
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact Me | Manish Solanki",
     description: "Get in touch for MERN stack projects and collaborations.",
-    url: "https://solankimanish.dev/contact",
+    url: "https://solankimanish.dev/",
     siteName: "Manish Solanki Portfolio",
     images: [
       {

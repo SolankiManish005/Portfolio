@@ -3,6 +3,7 @@ import { projects } from "@/data/projects";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import FAQ from "./FAQ";
 
 export default function Projects() {
   const [showAll, setShowAll] = useState(false);
@@ -22,9 +23,7 @@ export default function Projects() {
         {visibleProjects.map((project, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-neutral-900 rounded-2xl border border-gray-200 dark:border-neutral-800 p-6 flex flex-col justify-between hover:shadow-xl hover:border-primary
-            transition-all duration-300
-            hover:-translate-y-1"
+            className="bg-white dark:bg-neutral-900 rounded-2xl border border-gray-200 dark:border-neutral-800 p-6 flex flex-col justify-between hover:shadow-xl hover:border-primary transition-all duration-300 hover:-translate-y-1"
           >
             <div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 hover:text-indigo-500">
@@ -91,6 +90,7 @@ export default function Projects() {
           </button>
         )}
       </div>
+      <FAQ />
     </div>
   );
 }

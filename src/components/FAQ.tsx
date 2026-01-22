@@ -5,11 +5,11 @@ import { ChevronDown } from "lucide-react";
 import { faqs } from "@/data/faq";
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="max-w-7xl mx-auto px-6">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+    <>
+      <h2 className="text-3xl font-bold text-gray-900 dark:text-white my-8">
         Frequently Asked Questions
       </h2>
 
@@ -20,15 +20,13 @@ export default function FAQ() {
           return (
             <div
               key={index}
-              className="rounded-xl border border-gray-200 dark:border-neutral-800
-                bg-white dark:bg-neutral-900
-                transition"
+              className="rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition"
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left"
+                className="w-full flex items-center justify-between px-4 py-3 text-left"
               >
-                <span className="text-lg font-medium text-gray-900 dark:text-white">
+                <span className="text-base font-medium text-gray-900 dark:text-white">
                   {faq.question}
                 </span>
 
@@ -46,7 +44,7 @@ export default function FAQ() {
                     : "grid-rows-[0fr] opacity-0"
                 }`}
               >
-                <div className="overflow-hidden px-6 pb-5 text-gray-600 dark:text-gray-400">
+                <div className="overflow-hidden px-4 pb-3 text-sm text-gray-600 dark:text-gray-400">
                   {faq.answer}
                 </div>
               </div>
@@ -54,6 +52,6 @@ export default function FAQ() {
           );
         })}
       </div>
-    </div>
+    </>
   );
 }

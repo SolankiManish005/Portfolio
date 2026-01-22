@@ -2,26 +2,26 @@ export const faqs = [
   {
     question: "What industries have you worked with?",
     answer:
-      "I have worked with startups, SaaS platforms, e-commerce, healthcare, finance, and enterprise-level applications.",
+      "I've worked with startups, SaaS companies, e-commerce businesses, and enterprise applications, building robust and scalable solutions tailored to different industry needs.",
   },
   {
-    question: "How do you handle project deadlines and priorities?",
+    question: "How do you stay updated with new technologies?",
     answer:
-      "I follow agile practices, break tasks into milestones, and maintain clear communication to ensure timely delivery.",
+      "I continuously upskill by reading industry blogs, contributing to open-source projects, and exploring new frameworks to ensure I provide the best solutions.",
   },
   {
-    question: "What services do you offer?",
+    question: "How do you collaborate with clients and teams?",
     answer:
-      "I offer frontend development, full-stack MERN solutions, API integrations, performance optimization, and UI/UX implementation.",
-  },
-  {
-    question: "What is your approach to problem-solving?",
-    answer:
-      "I analyze requirements, identify root causes, prototype solutions, and iterate based on testing and feedback.",
+      "I believe in clear, open communication using tools like Slack, Notion, and Zoom. Regular updates, agile development, and transparent workflows ensure smooth collaboration.",
   },
   {
     question: "How do you ensure high-quality code?",
     answer:
-      "I follow clean code principles, conduct reviews, write reusable components, and test thoroughly before deployment.",
+      "I follow industry best practices, including test-driven development (TDD), thorough code reviews, and CI/CD automation. This ensures clean, maintainable, and scalable code for every project.",
+  },
+  {
+    question: "Do you provide post-launch support?",
+    answer:
+      "Yes, I offer maintenance and support packages, including updates, bug fixes, and feature enhancements to ensure your application remains up-to-date and secure.",
   },
 ];
