@@ -15,6 +15,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://solankimanish.dev/"),
   description:
     "Contact Manish Solanki, MERN Stack Developer from India, for freelance work, projects, and collaborations.",
+  icons: {
+    icon: [
+      { url: "/favicon2.ico", sizes: "any" },
+      { url: "/favicon2.ico", type: "image/x-icon" },
+    ],
+    shortcut: "/favicon2.ico",
+  },
   keywords: [
     "Manish Solanki",
     "MERN Developer",
