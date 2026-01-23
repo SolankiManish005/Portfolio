@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const auth = req.headers.get("authorization");
+  const isCron = req.headers.get("x-vercel-cron");
 
-  if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
-    return new NextResponse("Unauthorized", { status: 401 });
+  if (!isCron) {
+    return new NextResponse("Forbidden", { status: 403 });
   }
 
-  console.log("Cron job executed");
+  console.log("Vercel cron job running");
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ success: true });
 }
