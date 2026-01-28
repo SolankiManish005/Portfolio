@@ -20,9 +20,9 @@ const About = () => {
           </p>
           <br />
           <p className="text-gray-700 dark:text-gray-300 text-lg font-medium">
-            When I'm not coding, you can find me exploring new technologies,
-            contributing to open-source projects, or enjoying outdoor
-            activities.
+            When I&apos;m not coding, you can find me exploring new
+            technologies, contributing to open-source projects, or enjoying
+            outdoor activities.
           </p>
         </section>
         <Experience />

@@ -1,4 +1,3 @@
-import FAQ from "@/components/FAQ";
 import Projects from "@/components/Projects";
 
 export default function ProjectsPage() {
