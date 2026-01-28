@@ -5,20 +5,19 @@ import { X } from "lucide-react";
 import { trackVisitor } from "@/utils/visitor";
 
 export default function VIPWelcome() {
-  const [show, setShow] = useState(false);
-  const [visits, setVisits] = useState(0);
+  const [show, setShow] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
 
-  useEffect(() => {
     const visitCount = trackVisitor();
-    setVisits(visitCount);
-
     const hasSeen = sessionStorage.getItem("hasSeenWelcome");
 
     if (!hasSeen && visitCount > 1) {
-      setShow(true);
       sessionStorage.setItem("hasSeenWelcome", "true");
+      return true;
     }
-  }, []);
+
+    return false;
+  });
 
   useEffect(() => {
     if (!show) return;
@@ -49,7 +48,7 @@ export default function VIPWelcome() {
 
         <div className="text-5xl mb-4">🚀</div>
 
-        <h2 className="text-2xl font-bold mb-2">You're Back!</h2>
+        <h2 className="text-2xl font-bold mb-2">You&apos;re Back!</h2>
 
         <p className="text-gray-600 dark:text-gray-400 mb-4">
           Thanks for being a regular visitor

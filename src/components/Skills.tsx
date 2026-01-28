@@ -40,7 +40,6 @@ export default function Skills() {
         <div className="relative border-l-2 border-gray-300 dark:border-gray-700 pl-6 space-y-16">
           {skillGroups.map((group) => (
             <div key={group.title} className="relative">
-              {/* Dot */}
               <div className="absolute -left-1.75 top-2 h-3 w-3 rounded-full bg-primary"></div>
 
               <h3 className="text-xl font-semibold mb-6 text-gray-900 dark:text-white">
@@ -51,10 +50,7 @@ export default function Skills() {
                 {group.skills.map((skill) => (
                   <div
                     key={skill.name}
-                    className="relative group flex flex-col items-center justify-center rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-5 hover:shadow-xl hover:border-primary
-            transition-all duration-300
-            hover:-translate-y-1
-            cursor-pointer"
+                    className="relative group flex flex-col items-center justify-center rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-5 hover:shadow-xl hover:border-primary transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                   >
                     <Image
                       src={skill.icon}
@@ -76,16 +72,7 @@ export default function Skills() {
                       aria-label="Learn more"
                     >
                       <ExternalLink size={15} />
-                      <span
-                        className="
-      absolute -top-9 left-1/2 -translate-x-1/2
-      scale-0 group-hover:scale-100
-      transition
-      rounded bg-black dark:bg-white
-      text-white dark:text-black
-      text-xs px-2 py-1 shadow whitespace-nowrap
-    "
-                      >
+                      <span className="absolute -top-9 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition rounded bg-black dark:bg-white text-white dark:text-black text-xs px-2 py-1 shadow whitespace-nowrap">
                         Learn more
                       </span>
                     </Link>
@@ -109,18 +96,7 @@ export default function Skills() {
             return (
               <div
                 key={index}
-                className="
-            bg-gray-50 dark:bg-gray-900
-            border border-gray-200 dark:border-gray-800
-            rounded-xl p-6
-            flex flex-col items-center justify-center text-center
-            shadow-sm
-            hover:shadow-xl hover:border-primary
-            transition-all duration-300
-            hover:-translate-y-1
-            cursor-pointer
-            group
-          "
+                className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-xl hover:border-primary transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
               >
                 <Icon className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition" />
 

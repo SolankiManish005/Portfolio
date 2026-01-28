@@ -67,8 +67,8 @@ export default function Contact() {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Contact Me</h2>
 
           <p className="text-gray-600 dark:text-gray-400 max-w-md mb-8">
-            I'm interested in freelance opportunities and collaborations. If you
-            have a project that could use my help, please get in touch.
+            I&apos;m interested in freelance opportunities and collaborations.
+            If you have a project that could use my help, please get in touch.
           </p>
 
           <div className="space-y-4">

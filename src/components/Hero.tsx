@@ -8,10 +8,9 @@ export default function Hero() {
   return (
     <section className="md:h-[calc(100vh-8.1rem)] flex items-center bg-white dark:bg-black text-gray-900 dark:text-white transition-colors">
       <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center pt-2">
-        {/* Left Content */}
         <div className="text-center md:text-left">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
-            Hi, I'm
+            Hi, I&apos;m
           </h1>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-indigo-500">
