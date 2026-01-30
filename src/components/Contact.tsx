@@ -83,7 +83,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <Link href="/resume.pdf" download passHref>
+          <Link href="/Manish-solanki.pdf" download passHref>
             <button className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-gray-700 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition cursor-pointer">
               <Download className="w-4 h-4" />
               Resume
