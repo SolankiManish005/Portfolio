@@ -20,7 +20,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-black/10 border-b border-gray-200/20 dark:border-gray-800/40">
+    <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-black/10 border-b border-gray-200/20 dark:border-gray-800/40 animate-slideDown">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex h-16 items-center">
           <div className="flex items-center gap-2 w-1/4">
@@ -44,7 +44,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-2 transition-all group ${
+                  className={`flex items-center gap-2 transition-all group relative ${
                     isActive
                       ? "text-indigo-500 font-semibold"
                       : "text-gray-700 dark:text-gray-300 hover:text-indigo-500"
@@ -55,6 +55,9 @@ export default function Navbar() {
                     className="group-hover:scale-110 transition"
                   />
                   {link.name}
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-indigo-500 animate-slideInLeft" />
+                  )}
                 </Link>
               );
             })}
@@ -67,7 +70,7 @@ export default function Navbar() {
           <div className="md:hidden ml-auto">
             <button
               onClick={() => setOpen(!open)}
-              className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800"
+              className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 transition"
             >
               {open ? <X /> : <Menu />}
             </button>
@@ -76,7 +79,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-white/95 dark:bg-black/10 backdrop-blur-xl px-6 py-6 space-y-6">
+        <div className="md:hidden bg-white/95 dark:bg-black/10 backdrop-blur-xl px-6 py-6 space-y-6 animate-slideDown">
           {links.map((link) => {
             const Icon = link.icon;
             return (
@@ -84,7 +87,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 text-lg text-gray-700 dark:text-gray-200 hover:text-indigo-500"
+                className="flex items-center gap-3 text-lg text-gray-700 dark:text-gray-200 hover:text-indigo-500 transition"
               >
                 <Icon size={20} />
                 {link.name}

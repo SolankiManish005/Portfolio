@@ -5,19 +5,21 @@ import { X } from "lucide-react";
 import { trackVisitor } from "@/utils/visitor";
 
 export default function VIPWelcome() {
-  const [show, setShow] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
+  const [show, setShow] = useState(false);
 
-    const visitCount = trackVisitor();
-    const hasSeen = sessionStorage.getItem("hasSeenWelcome");
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const visitCount = trackVisitor();
+      const hasSeen = sessionStorage.getItem("hasSeenWelcome");
 
-    if (!hasSeen && visitCount > 1) {
-      sessionStorage.setItem("hasSeenWelcome", "true");
-      return true;
-    }
+      if (!hasSeen && visitCount > 1) {
+        sessionStorage.setItem("hasSeenWelcome", "true");
+        setShow(true);
+      }
+    });
 
-    return false;
-  });
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   useEffect(() => {
     if (!show) return;
@@ -33,12 +35,7 @@ export default function VIPWelcome() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-      <div
-        className="relative max-w-md w-full rounded-2xl p-8 text-center
-        bg-white dark:bg-zinc-900
-        text-gray-900 dark:text-white
-        shadow-2xl animate-fadeIn"
-      >
+      <div className="relative max-w-md w-full rounded-2xl p-8 text-center bg-white dark:bg-zinc-900 text-gray-900 dark:text-white shadow-2xl animate-fadeIn">
         <button
           onClick={() => setShow(false)}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 dark:hover:text-white"
@@ -54,10 +51,7 @@ export default function VIPWelcome() {
           Thanks for being a regular visitor
         </p>
 
-        <span
-          className="inline-block px-4 py-2 rounded-full text-sm font-semibold
-          bg-black text-white dark:bg-white dark:text-black"
-        >
+        <span className="inline-block px-4 py-2 rounded-full text-sm font-semibold bg-black text-white dark:bg-white dark:text-black">
           VIP Experience ✨
         </span>
       </div>

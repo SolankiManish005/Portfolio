@@ -25,7 +25,13 @@ export const skillGroups: SkillGroup[] = [
       },
       { name: "React", icon: "/react.svg", href: "https://react.dev/" },
       { name: "Next.js", icon: "/nextjs1.svg", href: "https://nextjs.org/" },
+      {
+        name: "Express.js",
+        icon: "/expressjs.svg",
+        href: "https://expressjs.com/",
+      },
       { name: "Node.js", icon: "/nodejs.svg", href: "https://nodejs.org/en" },
+      { name: "GraphQL", icon: "/graphql.svg", href: "https://graphql.org/" },
       {
         name: "MongoDB",
         icon: "/mongodb.svg",
@@ -37,11 +43,10 @@ export const skillGroups: SkillGroup[] = [
         href: "https://www.postgresql.org/",
       },
       {
-        name: "Express.js",
-        icon: "/expressjs.svg",
-        href: "https://expressjs.com/",
+        name: "MySQL",
+        icon: "/mysql.svg",
+        href: "https://www.mysql.com/",
       },
-      { name: "GraphQL", icon: "/graphql.svg", href: "https://graphql.org/" },
     ],
   },
   {

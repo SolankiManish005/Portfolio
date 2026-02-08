@@ -10,7 +10,8 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "framer-motion": "^12.27.1",
+    "aos": "^2.3.4",
+    "framer-motion": "^12.33.0",
     "lucide-react": "^0.562.0",
     "mongodb": "^6.21.0",
     "mongoose": "^8.21.0",
