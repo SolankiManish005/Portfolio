@@ -1,8 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import clientPromise from "@/lib/mongodb";
+import dbConnect from "@/lib/mongodb";
 import { authOptions } from "@/lib/auth";
 import MessagesTable, { Message } from "@/components/MessagesTable";
+import Contact from "@/models/Contact";
 
 export default async function AdminMessagesPage() {
   const session = await getServerSession(authOptions);
@@ -11,14 +12,11 @@ export default async function AdminMessagesPage() {
     redirect("/admin/login");
   }
 
-  const client = await clientPromise;
-  const db = client.db("portfolioDB");
+  await dbConnect();
 
-  const messagesFromDb = await db
-    .collection("contacts")
-    .find({})
+  const messagesFromDb = await Contact.find({ deletedAt: null })
     .sort({ createdAt: -1 })
-    .toArray();
+    .lean();
 
   const messages: Message[] = messagesFromDb.map((msg) => ({
     _id: msg._id.toString(),
@@ -26,7 +24,7 @@ export default async function AdminMessagesPage() {
     email: msg.email,
     subject: msg.subject,
     message: msg.message,
-    createdAt: msg.createdAt,
+    createdAt: msg.createdAt.toISOString(),
   }));
 
   return (

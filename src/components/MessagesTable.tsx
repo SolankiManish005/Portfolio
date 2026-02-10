@@ -20,6 +20,19 @@ export default function MessagesTable({ messages }: { messages: Message[] }) {
     window.location.reload();
   };
 
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }).format(date);
+  };
+
   return (
     <>
       <div className="flex justify-between items-center mb-6">
@@ -75,9 +88,7 @@ export default function MessagesTable({ messages }: { messages: Message[] }) {
                 </td>
 
                 <td className="px-4 py-3 border-b border-gray-200 dark:border-neutral-800 text-sm text-gray-500 dark:text-gray-400">
-                  {msg.createdAt
-                    ? new Date(msg.createdAt).toLocaleString()
-                    : "N/A"}
+                  {msg.createdAt ? formatDate(msg.createdAt) : "N/A"}
                 </td>
 
                 <td className="px-4 py-3 border-b border-gray-200 dark:border-neutral-800 text-center">

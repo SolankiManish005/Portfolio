@@ -6,6 +6,7 @@ export interface IContact extends Document {
   subject: string;
   message: string;
   createdAt: Date;
+  deletedAt: Date;
   updatedAt: Date;
 }
 
@@ -26,6 +27,10 @@ const ContactSchema: Schema<IContact> = new Schema(
     message: {
       type: String,
       required: true,
+    },
+    deletedAt: {
+      type: Date,
+      default: null,
     },
   },
   {
