@@ -52,7 +52,10 @@ function buildLocalReply(message: string) {
     normalized.includes("tech")
   ) {
     const groups = skillGroups
-      .map((group) => `${group.title}: ${group.skills.map((skill) => skill.name).join(", ")}`)
+      .map(
+        (group) =>
+          `${group.title}: ${group.skills.map((skill) => skill.name).join(", ")}`,
+      )
       .join("\n");
 
     return `Main skills and tools:\n${groups}`;
@@ -185,7 +188,8 @@ async function getAssistantReply(message: string) {
     const reply = result.response.text().trim();
 
     return (
-      reply || "I could not generate a response right now. Please try asking again."
+      reply ||
+      "I could not generate a response right now. Please try asking again."
     );
   } catch (error) {
     if (isGeminiUnavailable(error)) {
@@ -234,7 +238,7 @@ export async function POST(request: NextRequest) {
     const sessionId = sanitizeConversationId(body.sessionId);
     const visitorName = body.visitorName?.trim();
     const visitorEmail = body.visitorEmail?.trim();
-    
+
     // Extract visitor IP
     const visitorIP =
       request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||

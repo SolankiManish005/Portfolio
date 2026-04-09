@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     // Format data for Google Sheets
     const sheetData = conversations.map((conv) => ({
       "Visitor Name": conv.visitorName || "Anonymous",
-      "Email": conv.visitorEmail || "—",
+      Email: conv.visitorEmail || "—",
       "IP Address": conv.visitorIP || "unknown",
       "Message Count": conv.messages.length,
       "Last Updated": new Date(conv.updatedAt).toISOString().split("T")[0],
@@ -37,14 +37,16 @@ export async function POST(request: NextRequest) {
     const csv = [
       headers.join(","),
       ...sheetData.map((row) =>
-        headers.map((header) => {
-          const value = (row as Record<string, string | number>)[header];
-          const stringValue = String(value);
-          // Escape quotes and wrap in quotes if contains comma
-          return stringValue.includes(",")
-            ? `"${stringValue.replace(/"/g, '""')}"`
-            : stringValue;
-        }).join(","),
+        headers
+          .map((header) => {
+            const value = (row as Record<string, string | number>)[header];
+            const stringValue = String(value);
+            // Escape quotes and wrap in quotes if contains comma
+            return stringValue.includes(",")
+              ? `"${stringValue.replace(/"/g, '""')}"`
+              : stringValue;
+          })
+          .join(","),
       ),
     ].join("\n");
 

@@ -4,14 +4,14 @@ import ChatConversation from "@/models/ChatConversation";
 
 /**
  * GET /api/webhook/sync-to-sheets
- * 
+ *
  * This endpoint returns conversations that haven't been synced to Google Sheets yet.
  * It's meant to be called by a Google Apps Script running in your Sheet.
- * 
+ *
  * Query params:
  * - webhookKey: Your secret webhook key (from env var SHEETS_WEBHOOK_SECRET)
  * - limit: Max conversations to return (default: 50)
- * 
+ *
  * Response:
  * {
  *   "conversations": [
@@ -43,7 +43,9 @@ export async function GET(request: NextRequest) {
     await dbConnect();
 
     // Fetch conversations that haven't been synced
-    const conversations = await ChatConversation.find({ syncedToSheet: { $ne: true } })
+    const conversations = await ChatConversation.find({
+      syncedToSheet: { $ne: true },
+    })
       .sort({ updatedAt: -1 })
       .limit(limit)
       .lean()
@@ -77,10 +79,10 @@ export async function GET(request: NextRequest) {
 
 /**
  * POST /api/webhook/sync-to-sheets
- * 
+ *
  * Called by Google Apps Script after successfully syncing conversations to the Sheet.
  * This marks conversations as synced in MongoDB.
- * 
+ *
  * Request body:
  * {
  *   "webhookKey": "your-secret-key",
@@ -106,7 +108,9 @@ export async function POST(request: NextRequest) {
     await dbConnect();
 
     // Mark the oldest `count` unsynced conversations as synced
-    const unsynced = await ChatConversation.find({ syncedToSheet: { $ne: true } })
+    const unsynced = await ChatConversation.find({
+      syncedToSheet: { $ne: true },
+    })
       .sort({ createdAt: 1 })
       .limit(body.count)
       .exec();

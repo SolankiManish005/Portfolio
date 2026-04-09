@@ -1,6 +1,7 @@
 # Google Sheets Auto-Sync Setup
 
 **TL;DR (Quick version):**
+
 1. Generate secret: `openssl rand -hex 32` (or PowerShell command below)
 2. Add to `.env.local`: `SHEETS_WEBHOOK_SECRET=your_secret`
 3. Open Sheet → Extensions → Apps Script
@@ -13,14 +14,14 @@
 
 ## What Gets Synced?
 
-| Column | Source | Example |
-|--------|--------|---------|
-| Visitor Name | Chat submission (optional) | "John Doe" |
-| Email | Chat submission (optional) | "john@example.com" |
-| IP Address | Server logs | "192.168.1.1" |
-| Message Count | Total messages in conversation | 5 |
-| Created At | Conversation start date | "2024-01-15" |
-| Updated At | Last message date | "2024-01-16" |
+| Column        | Source                         | Example            |
+| ------------- | ------------------------------ | ------------------ |
+| Visitor Name  | Chat submission (optional)     | "John Doe"         |
+| Email         | Chat submission (optional)     | "john@example.com" |
+| IP Address    | Server logs                    | "192.168.1.1"      |
+| Message Count | Total messages in conversation | 5                  |
+| Created At    | Conversation start date        | "2024-01-15"       |
+| Updated At    | Last message date              | "2024-01-16"       |
 
 ## Setup Steps (5 minutes)
 
@@ -69,16 +70,16 @@ const FETCH_LIMIT = 50; // Max conversations per sync
  */
 function fetchConversations() {
   const url = `${WEBHOOK_URL}?webhookKey=${encodeURIComponent(WEBHOOK_KEY)}&limit=${FETCH_LIMIT}`;
-  
+
   try {
     const response = UrlFetchApp.fetch(url, { muteHttpExceptions: true });
     const result = JSON.parse(response.getContentText());
-    
+
     if (response.getResponseCode() !== 200) {
       console.error("Webhook error:", result.error);
       return [];
     }
-    
+
     console.log(`Fetched ${result.count} conversations`);
     return result.conversations || [];
   } catch (error) {
@@ -92,17 +93,18 @@ function fetchConversations() {
  */
 function syncToSheet() {
   const conversations = fetchConversations();
-  
+
   if (conversations.length === 0) {
     console.log("No new conversations to sync");
     return;
   }
-  
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+
+  const sheet =
+    SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
   if (!sheet) {
     throw new Error(`Sheet "${SHEET_NAME}" not found`);
   }
-  
+
   // Ensure headers exist
   const lastRow = sheet.getLastRow();
   if (lastRow === 0) {
@@ -113,25 +115,25 @@ function syncToSheet() {
       "Message Count",
       "Created At",
       "Updated At",
-      "Synced At"
+      "Synced At",
     ];
     sheet.appendRow(headers);
   }
-  
+
   // Append data rows
   const now = new Date().toISOString();
-  const rows = conversations.map(conv => [
+  const rows = conversations.map((conv) => [
     conv.visitorName,
     conv.visitorEmail,
     conv.visitorIP,
     conv.messageCount,
     conv.createdAt,
     conv.updatedAt,
-    now
+    now,
   ]);
-  
-  rows.forEach(row => sheet.appendRow(row));
-  
+
+  rows.forEach((row) => sheet.appendRow(row));
+
   // Mark as synced in database
   try {
     const postUrl = `${WEBHOOK_URL}`;
@@ -139,12 +141,12 @@ function syncToSheet() {
       method: "post",
       payload: JSON.stringify({
         webhookKey: WEBHOOK_KEY,
-        count: conversations.length
+        count: conversations.length,
       }),
       contentType: "application/json",
-      muteHttpExceptions: true
+      muteHttpExceptions: true,
     });
-    
+
     console.log(`✓ Synced ${conversations.length} conversations`);
   } catch (error) {
     console.error("Couldn't mark synced, but data saved:", error);
@@ -157,18 +159,15 @@ function syncToSheet() {
 function setupAutomaticSync() {
   // Remove existing triggers
   PropertiesService.getScriptProperties().deleteProperty("triggerSetup");
-  ScriptApp.getProjectTriggers().forEach(trigger => {
+  ScriptApp.getProjectTriggers().forEach((trigger) => {
     if (trigger.getHandlerFunction() === "syncToSheet") {
       ScriptApp.deleteTrigger(trigger);
     }
   });
-  
+
   // Create new trigger
-  ScriptApp.newTrigger("syncToSheet")
-    .timeBased()
-    .everyMinutes(30)
-    .create();
-  
+  ScriptApp.newTrigger("syncToSheet").timeBased().everyMinutes(30).create();
+
   console.log("✓ Automatic sync configured (every 30 minutes)");
   syncToSheet(); // Run once immediately
 }
@@ -203,6 +202,7 @@ const SHEET_NAME = "Sheet1";
 ```
 
 **How to find your values:**
+
 - ✅ **WEBHOOK_URL**: Your deployed website + `/api/webhook/sync-to-sheets`
 - ✅ **WEBHOOK_KEY**: From `.env.local` (the secret you generated earlier)
 - ✅ **SHEET_NAME**: The tab name at the bottom of your Google Sheet
@@ -220,6 +220,7 @@ const SHEET_NAME = "Sheet1";
    - Click **"Allow"**
 
 **What happens:**
+
 - ✅ Automatic trigger created (every 30 minutes)
 - ✅ First sync runs immediately
 - ✅ Data appears in your Sheet
@@ -282,10 +283,12 @@ If you prefer manual exports:
 Returns unsynced conversations.
 
 **Query Parameters:**
+
 - `webhookKey` (required): Your secret key
 - `limit` (optional): Max results, default 50
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -308,6 +311,7 @@ Returns unsynced conversations.
 Mark conversations as synced (call after appending to sheet).
 
 **Request Body:**
+
 ```json
 {
   "webhookKey": "your_secret_key",
@@ -316,6 +320,7 @@ Mark conversations as synced (call after appending to sheet).
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,

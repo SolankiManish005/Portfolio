@@ -74,7 +74,9 @@ export default function ConversationsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-neutral-950">
-        <p className="text-gray-600 dark:text-gray-400">Loading conversations...</p>
+        <p className="text-gray-600 dark:text-gray-400">
+          Loading conversations...
+        </p>
       </div>
     );
   }
@@ -89,8 +91,8 @@ export default function ConversationsPage() {
             </h1>
             <p className="mt-2 text-gray-600 dark:text-gray-400">
               {conversations.length} total
-              {conversations.length > 0 && 
-                ` • ${conversations.filter(c => c.visitorName || c.visitorEmail).length} with visitor info`}
+              {conversations.length > 0 &&
+                ` • ${conversations.filter((c) => c.visitorName || c.visitorEmail).length} with visitor info`}
             </p>
           </div>
           <button
@@ -111,7 +113,9 @@ export default function ConversationsPage() {
 
         {conversations.length === 0 ? (
           <div className="rounded-lg border border-gray-200 bg-white p-8 text-center dark:border-gray-800 dark:bg-gray-900">
-            <p className="text-gray-600 dark:text-gray-400">No conversations yet</p>
+            <p className="text-gray-600 dark:text-gray-400">
+              No conversations yet
+            </p>
           </div>
         ) : (
           <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
@@ -163,7 +167,9 @@ export default function ConversationsPage() {
                         </code>
                         {conv.visitorIP && conv.visitorIP !== "unknown" && (
                           <button
-                            onClick={() => copyToClipboard(conv.visitorIP || "", conv._id)}
+                            onClick={() =>
+                              copyToClipboard(conv.visitorIP || "", conv._id)
+                            }
                             className="rounded p-1 hover:bg-gray-100 dark:hover:bg-gray-800"
                             title="Copy IP"
                           >

@@ -19,9 +19,7 @@ export function getPortfolioContext() {
       `- ${item.title} at ${item.company} (${item.duration}): ${item.description}`,
   );
 
-  const faqList = faqs.map(
-    (item) => `- Q: ${item.question} A: ${item.answer}`,
-  );
+  const faqList = faqs.map((item) => `- Q: ${item.question} A: ${item.answer}`);
 
   return [
     "Portfolio owner: Manish Solanki.",

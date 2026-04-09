@@ -67,8 +67,13 @@ export default function ConversationDetailPage() {
   if (!conversation) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-neutral-950">
-        <p className="text-gray-600 dark:text-gray-400 mb-4">Conversation not found</p>
-        <Link href="/admin/conversations" className="text-blue-600 hover:underline dark:text-blue-400">
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
+          Conversation not found
+        </p>
+        <Link
+          href="/admin/conversations"
+          className="text-blue-600 hover:underline dark:text-blue-400"
+        >
           Back to conversations
         </Link>
       </div>
@@ -118,18 +123,21 @@ export default function ConversationDetailPage() {
                 <code className="rounded bg-gray-100 px-2 py-1 dark:bg-gray-800 text-gray-900 dark:text-white">
                   {conversation.visitorIP || "unknown"}
                 </code>
-                {conversation.visitorIP && conversation.visitorIP !== "unknown" && (
-                  <button
-                    onClick={() => copyToClipboard(conversation.visitorIP || "")}
-                    className="rounded p-1 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  >
-                    {copiedId === conversation.visitorIP ? (
-                      <Check className="h-4 w-4 text-green-600" />
-                    ) : (
-                      <Copy className="h-4 w-4 text-gray-400" />
-                    )}
-                  </button>
-                )}
+                {conversation.visitorIP &&
+                  conversation.visitorIP !== "unknown" && (
+                    <button
+                      onClick={() =>
+                        copyToClipboard(conversation.visitorIP || "")
+                      }
+                      className="rounded p-1 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      {copiedId === conversation.visitorIP ? (
+                        <Check className="h-4 w-4 text-green-600" />
+                      ) : (
+                        <Copy className="h-4 w-4 text-gray-400" />
+                      )}
+                    </button>
+                  )}
               </div>
             </div>
 

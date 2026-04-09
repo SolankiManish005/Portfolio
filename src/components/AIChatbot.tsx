@@ -1,6 +1,13 @@
 "use client";
 
-import { Bot, MessageSquare, Send, X, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  Bot,
+  MessageSquare,
+  Send,
+  X,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 type ChatMessage = {
@@ -75,7 +82,9 @@ export default function AIChatbot() {
 
     const loadHistory = async () => {
       try {
-        const response = await fetch(`/api/chat?sessionId=${encodeURIComponent(sessionId)}`);
+        const response = await fetch(
+          `/api/chat?sessionId=${encodeURIComponent(sessionId)}`,
+        );
         const data = (await response.json()) as ChatHistoryResponse;
 
         if (!response.ok || !data.success || !data.messages?.length) {
@@ -141,7 +150,10 @@ export default function AIChatbot() {
 
       setMessages((current) => [
         ...current,
-        { role: "assistant", content: data.reply || "Unable to answer right now." },
+        {
+          role: "assistant",
+          content: data.reply || "Unable to answer right now.",
+        },
       ]);
     } catch (error) {
       setMessages((current) => [
@@ -167,7 +179,11 @@ export default function AIChatbot() {
         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-black px-4 py-3 text-sm font-semibold text-white shadow-2xl shadow-black/20 transition hover:scale-105 dark:bg-white dark:text-black"
         aria-label="Open AI chatbot"
       >
-        {open ? <X className="h-4 w-4" /> : <MessageSquare className="h-4 w-4" />}
+        {open ? (
+          <X className="h-4 w-4" />
+        ) : (
+          <MessageSquare className="h-4 w-4" />
+        )}
         {open ? "Close Chat" : "Ask AI"}
       </button>
 
@@ -221,7 +237,10 @@ export default function AIChatbot() {
                 value={visitorEmail}
                 onChange={(e) => {
                   setVisitorEmail(e.target.value);
-                  window.localStorage.setItem(STORAGE_EMAIL_KEY, e.target.value);
+                  window.localStorage.setItem(
+                    STORAGE_EMAIL_KEY,
+                    e.target.value,
+                  );
                 }}
                 placeholder="Email"
                 className="w-full rounded-lg border border-gray-200 bg-transparent px-3 py-2 text-sm text-gray-900 outline-none placeholder:text-gray-400 focus:border-black dark:border-gray-700 dark:text-white dark:focus:border-white"
