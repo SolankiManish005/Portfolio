@@ -10,6 +10,8 @@ Personal portfolio built with Next.js App Router, Tailwind CSS, MongoDB, and a c
 - WhatsApp prefill link after successful submission
 - Admin login and protected messages dashboard
 - Soft-delete for contact messages
+- Floating AI chatbot powered by Gemini
+- Local portfolio fallback when Gemini is unavailable
 
 ## Tech Stack
 
@@ -20,6 +22,8 @@ Personal portfolio built with Next.js App Router, Tailwind CSS, MongoDB, and a c
 - MongoDB + Mongoose
 - NextAuth (credentials-based admin login)
 - Nodemailer (SMTP email notifications)
+- Google Generative AI (Gemini chatbot)
+- Google Generative AI (Gemini chatbot with local fallback)
 
 ## Project Structure
 
@@ -86,7 +90,23 @@ CONTACT_RECEIVER_EMAIL=yourgmail@gmail.com
 
 # WhatsApp prefill target number (international format without +)
 WHATSAPP_NUMBER=919999999999
+
+# Gemini chatbot
+GEMINI_API_KEY=your_google_ai_studio_api_key
+GEMINI_MODEL=gemini-2.0-flash
+
+# Google Sheets webhook sync (for auto-syncing chat conversations)
+SHEETS_WEBHOOK_SECRET=replace_with_32_char_random_string
 ```
+
+## Gemini Setup
+
+1. Open Google AI Studio and create an API key.
+2. Add the key to GEMINI_API_KEY.
+3. Restart the dev server.
+4. Ask the chatbot about skills, projects, experience, or contact details.
+
+If Gemini is unavailable, the chatbot still answers using your portfolio data and FAQ content.
 
 ## Gmail SMTP Notes
 
@@ -102,6 +122,41 @@ WHATSAPP_NUMBER=919999999999
 - npm run start: run production server
 - npm run lint: run ESLint
 - npm run format: run Prettier
+
+## Chatbot Visitor Tracking
+
+Automatically capture visitor information when they use the AI chatbot:
+
+### What Gets Tracked
+
+- **Visitor Name** (optional) - User provides via chat form
+- **Email** (optional) - User provides via chat form
+- **IP Address** (automatic) - Server extracts from request headers
+- **Session ID** - Unique per browser/device
+- **Message Count** - Number of exchanged messages
+- **Conversation Date** - When first message was sent
+
+### Admin Dashboard
+
+View all conversations at `/admin/conversations` (requires admin login):
+
+- **List View**: See all visitor conversations with name, email, IP, message count, and last updated date
+- **Detail View**: Click any conversation to see the full chat history
+- **Export**: Download all data as CSV file for import into Google Sheets or Excel
+- **Copy IP**: Click IP address to copy to clipboard for whitelisting/blocking
+
+### Auto-Sync to Google Sheets
+
+Automatically sync conversations to your Google Sheet every 30 minutes:
+
+1. Create a Google Sheet and share it with your Google account
+2. Add the webhook secret to `.env.local`: `SHEETS_WEBHOOK_SECRET=your_32_char_random_key`
+3. Follow [Google Apps Script setup guide](./GOOGLE_APPS_SCRIPT.md)
+4. Conversations auto-sync each time new ones are ready
+
+**Synced Columns**: Visitor Name, Email, IP Address, Message Count, Created Date, Updated Date
+
+See [GOOGLE_APPS_SCRIPT.md](./GOOGLE_APPS_SCRIPT.md) for detailed setup.
 
 ## Contact Flow (Current)
 
@@ -124,3 +179,4 @@ Deploy on Vercel or any Node.js hosting platform.
 - Never commit .env.local.
 - Rotate secrets immediately if leaked.
 - Use strong admin password and random NEXTAUTH_SECRET.
+- If you exposed a Gemini API key in .env.local, revoke it and create a new one.

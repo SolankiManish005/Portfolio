@@ -10,6 +10,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "aos": "^2.3.4",
     "framer-motion": "^12.33.0",
     "lucide-react": "^0.562.0",

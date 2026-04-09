@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, MapPin, Send, Download } from "lucide-react";
+import { Mail, MapPin, Send, Download, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -168,6 +168,7 @@ export default function Contact() {
               rel="noreferrer"
               className="mt-3 inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 transition"
             >
+              <MessageCircle className="mr-2 h-4 w-4" />
               Open WhatsApp
             </a>
           )}

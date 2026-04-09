@@ -1,7 +1,7 @@
-import "../globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import VIPWelcome from "@/components/VIPWelcome";
+import AIChatbot from "@/components/AIChatbot";
 
 export default function RootLayout({
   children,
@@ -14,6 +14,7 @@ export default function RootLayout({
       <VIPWelcome />
       <main className="flex-1 pb-16">{children}</main>
       <Footer />
+      <AIChatbot />
     </div>
   );
 }
