@@ -15,6 +15,7 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -27,6 +28,7 @@ export default function Contact() {
     setLoading(true);
     setError(null);
     setSuccess("");
+    setWhatsappUrl("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -47,8 +49,17 @@ export default function Contact() {
         throw new Error(data.message || "Something went wrong");
       }
 
-      setSuccess("Message sent successfully!");
+      setSuccess(
+        data.notificationSent
+          ? "Message sent successfully. Email notification sent."
+          : "Message saved successfully. Email notification is not configured yet.",
+      );
       setFormData({ name: "", email: "", subject: "", message: "" });
+
+      if (data.whatsappUrl) {
+        setWhatsappUrl(data.whatsappUrl);
+        window.open(data.whatsappUrl, "_blank", "noopener,noreferrer");
+      }
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
@@ -139,6 +150,29 @@ export default function Contact() {
           </button>
         </form>
       </div>
+
+      {(success || error) && (
+        <div className="fixed bottom-6 right-6 z-50 max-w-sm rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-black shadow-2xl p-4">
+          {success && (
+            <p className="text-sm text-green-600 dark:text-green-400">
+              {success}
+            </p>
+          )}
+          {error && (
+            <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+          )}
+          {whatsappUrl && (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 transition"
+            >
+              Open WhatsApp
+            </a>
+          )}
+        </div>
+      )}
     </section>
   );
 }

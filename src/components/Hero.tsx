@@ -27,7 +27,7 @@ export default function Hero() {
 
           <div className="mt-8 flex justify-center md:justify-start animate-fadeIn animate-delay-400">
             <Link
-              href="/Manish-solanki.pdf"
+              href="/Manish_Resume.pdf"
               download
               className="flex items-center gap-2 px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg transition bg-white dark:bg-black text-gray-900 dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:scale-105"
             >
