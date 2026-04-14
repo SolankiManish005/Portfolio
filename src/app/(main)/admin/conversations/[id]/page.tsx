@@ -191,7 +191,7 @@ export default function ConversationDetailPage() {
                   <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase">
                     {message.role}
                   </p>
-                  <p className="text-sm text-gray-900 dark:text-white whitespace-pre-wrap break-words">
+                  <p className="text-sm text-gray-900 dark:text-white whitespace-pre-wrap wrap-break-word">
                     {message.content}
                   </p>
                 </div>

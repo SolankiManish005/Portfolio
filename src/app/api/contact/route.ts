@@ -3,10 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { ContactSchema, ContactInput } from "@/lib/validations/contact";
 import { ZodError } from "zod";
 import dbConnect from "@/lib/mongodb";
-import { getMailTransporter } from "@/lib/mailer";
+import { sendAdminNotification, sendAutoReply } from "@/lib/mailer";
 
-const RECEIVER_EMAIL =
-  process.env.CONTACT_RECEIVER_EMAIL || "solankimanish0045@gmail.com";
 const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || "";
 
 function buildWhatsAppUrl(data: ContactInput) {
@@ -32,36 +30,13 @@ export async function POST(request: NextRequest) {
     const validatedData: ContactInput = ContactSchema.parse(body);
 
     const result = await Contact.create(validatedData);
+    await Promise.allSettled([
+      sendAutoReply(validatedData.email, validatedData.name),
+      sendAdminNotification(validatedData),
+    ]);
 
-    const transporter = getMailTransporter();
-    let notificationSent = false;
-    let notificationError: string | null = null;
-
-    if (transporter) {
-      try {
-        await transporter.sendMail({
-          from: process.env.SMTP_FROM || process.env.SMTP_USER,
-          to: RECEIVER_EMAIL,
-          subject: `Portfolio contact: ${validatedData.subject}`,
-          text: [
-            "New contact form submission",
-            `Name: ${validatedData.name}`,
-            `Email: ${validatedData.email}`,
-            `Subject: ${validatedData.subject}`,
-            `Message: ${validatedData.message}`,
-          ].join("\n"),
-        });
-
-        notificationSent = true;
-      } catch (mailError) {
-        console.error("Email notification failed:", mailError);
-        notificationError = "Email notification failed";
-      }
-    } else {
-      console.warn(
-        "SMTP configuration is missing. Email notification skipped.",
-      );
-    }
+    const notificationSent = false;
+    const notificationError: string | null = null;
 
     return NextResponse.json({
       success: true,
